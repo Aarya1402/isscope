@@ -31,12 +31,12 @@ This project is built using modern web technologies:
 
 ## Features
 
-- **AI Analysis**: Automatically analyzes issues to estimate complexity, required skills, and newcomer friendliness.
-- **Doability Scoring**: Ranks issues based on a calculated score (0-100) indicating how actionable and feasible they are.
-- **Parallel Processing**: Fetches issue details and performs AI analysis in parallel for high throughput.
-- **Rich Markdown Support**: Renders issue bodies and comments with full Markdown and HTML image support.
-- **Keyboard Navigation**: Vim-style navigation (j/k, gg, G) and keyboard shortcuts for efficiency.
-- **Local Privacy**: API keys are stored in memory and never sent to a backend server.
+- Automatically analyzes issues to estimate complexity, required skills, and newcomer friendliness.
+- Ranks issues based on a calculated score (0-100) indicating how actionable and feasible they are.
+- Fetches issue details and performs AI analysis in parallel for high throughput.
+- Renders issue bodies and comments with full Markdown and HTML image support.
+- Vim-style navigation (j/k, gg, G) and keyboard shortcuts for efficiency.
+- API keys are stored in memory and never sent to a backend server.
 
 ## Local Setup Instructions
 
