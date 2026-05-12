@@ -1,5 +1,8 @@
 // ── Formatters ────────────────────────────────────
 
+/**
+ * Format an ISO timestamp into a readable date.
+ */
 export function formatTimestamp(iso: string): string {
   const date = new Date(iso);
   return date.toLocaleDateString('en-US', {
@@ -9,6 +12,9 @@ export function formatTimestamp(iso: string): string {
   });
 }
 
+/**
+ * Convert an ISO timestamp into a relative time string.
+ */
 export function formatTimeAgo(iso: string): string {
   const seconds = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
   const intervals = [
@@ -23,19 +29,29 @@ export function formatTimeAgo(iso: string): string {
     const count = Math.floor(seconds / interval.seconds);
     if (count >= 1) return `${count}${interval.label} ago`;
   }
+
   return 'just now';
 }
 
+/**
+ * Truncate a string to the given length.
+ */
 export function truncate(str: string, maxLen: number): string {
   if (str.length <= maxLen) return str;
   return str.slice(0, maxLen - 1) + '…';
 }
 
+/**
+ * Get the display label for a complexity score.
+ */
 export function complexityLabel(n: number): string {
   const labels = ['—', 'Trivial', 'Simple', 'Moderate', 'Complex', 'Major Rewrite'];
   return labels[n] || '—';
 }
 
+/**
+ * Get the display label for a newcomer-friendliness score.
+ */
 export function friendlinessLabel(n: number): string {
   const labels = [
     '—',
@@ -45,9 +61,13 @@ export function friendlinessLabel(n: number): string {
     'Beginner Friendly',
     'Great First Issue',
   ];
+
   return labels[n] || '—';
 }
 
+/**
+ * Convert a progress state into a readable label.
+ */
 export function progressLabel(p: string): string {
   const map: Record<string, string> = {
     not_started: 'Not Started',
@@ -55,9 +75,13 @@ export function progressLabel(p: string): string {
     midway: 'In Progress',
     nearly_done: 'Nearly Done',
   };
+
   return map[p] || p;
 }
 
+/**
+ * Convert a status key into a readable label.
+ */
 export function statusLabel(s: string): string {
   const map: Record<string, string> = {
     active: 'Active',
@@ -66,5 +90,6 @@ export function statusLabel(s: string): string {
     external: 'External Dep',
     wontfix: "Won't Fix",
   };
+
   return map[s] || s;
 }
