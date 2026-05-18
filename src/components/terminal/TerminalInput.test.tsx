@@ -36,5 +36,17 @@ describe('TerminalInput component', () => {
     const input = screen.getByPlaceholderText('Type here...');
     fireEvent.keyDown(input, { key: 'Escape', code: 'Escape' });
     expect(onChange).toHaveBeenCalledWith('');
+    expect(input).toHaveFocus();
+  });
+
+  it('handles disabled state correctly', () => {
+    const onChange = vi.fn();
+    const onSubmit = vi.fn();
+    render(<TerminalInput value="" onChange={onChange} onSubmit={onSubmit} disabled />);
+    const input = screen.getByPlaceholderText('Type here...');
+    expect(input).toBeDisabled();
+
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 });
