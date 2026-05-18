@@ -51,7 +51,7 @@ describe('IssueDetail component', () => {
 
     expect(screen.getByText('#101 — Fix styling of buttons')).toBeInTheDocument();
     expect(screen.getByText('github_user')).toBeInTheDocument();
-    expect(screen.getByText('1 comments')).toBeInTheDocument();
+    expect(screen.getByText('1 comment')).toBeInTheDocument();
     expect(screen.getByText('ui-bug')).toBeInTheDocument();
 
     // AI Analysis section

@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { IssueListItem } from './IssueListItem';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { RankedIssue } from '../../lib/types';
 import React from 'react';
 
-const mockIssue: RankedIssue = {
+const getMockIssue = (): RankedIssue => ({
   number: 101,
   title: 'Optimize database queries',
   body: null,
@@ -17,12 +17,21 @@ const mockIssue: RankedIssue = {
   created_at: new Date(Date.now() - 7200000).toISOString(),
   html_url: '',
   state: 'open',
-};
+});
 
 describe('IssueListItem component', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-05-18T12:00:00Z'));
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('renders standard fields correctly', () => {
     const onClick = vi.fn();
-    render(<IssueListItem issue={mockIssue} rank={1} isSelected={false} onClick={onClick} />);
+    render(<IssueListItem issue={getMockIssue()} rank={1} isSelected={false} onClick={onClick} />);
 
     expect(screen.getByText('1.')).toBeInTheDocument();
     expect(screen.getByText('#101')).toBeInTheDocument();
@@ -33,7 +42,7 @@ describe('IssueListItem component', () => {
 
   it('triggers onClick when clicked', () => {
     const onClick = vi.fn();
-    render(<IssueListItem issue={mockIssue} rank={1} isSelected={false} onClick={onClick} />);
+    render(<IssueListItem issue={getMockIssue()} rank={1} isSelected={false} onClick={onClick} />);
 
     fireEvent.click(screen.getByText('Optimize database queries'));
     expect(onClick).toHaveBeenCalled();
@@ -41,7 +50,7 @@ describe('IssueListItem component', () => {
 
   it('renders status prefix tag when analysis exists', () => {
     const issueWithAnalysis: RankedIssue = {
-      ...mockIssue,
+      ...getMockIssue(),
       analysis: {
         summary: 'Discussion required',
         status: 'discussion',

@@ -119,4 +119,28 @@ describe('IssueList component', () => {
 
     expect(screen.getByText('No issues match your search.')).toBeInTheDocument();
   });
+
+  it('verifies that scrollIntoView is called on the selected item', () => {
+    const scrollMock = vi.fn();
+    const originalGetElementById = document.getElementById;
+    document.getElementById = vi.fn().mockReturnValue({
+      scrollIntoView: scrollMock,
+    });
+
+    render(
+      <IssueList
+        issues={mockIssues}
+        selectedId={1}
+        searchQuery=""
+        onSearchChange={vi.fn()}
+        onSelect={vi.fn()}
+        selectedIndex={0}
+      />,
+    );
+
+    expect(document.getElementById).toHaveBeenCalledWith('issue-0');
+    expect(scrollMock).toHaveBeenCalledWith({ block: 'nearest', behavior: 'smooth' });
+
+    document.getElementById = originalGetElementById;
+  });
 });
