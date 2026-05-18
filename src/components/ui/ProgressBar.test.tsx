@@ -28,8 +28,8 @@ describe('ProgressBar component', () => {
   });
 
   it('shows ETA when startTime is provided', () => {
-    const startTime = Date.now();
+    const startTime = Date.now() - 10000;
     render(<ProgressBar current={5} total={10} startTime={startTime} />);
-    expect(screen.getByText(/ETA:/)).toBeInTheDocument();
+    expect(screen.getByText(/ETA: 10s/)).toBeInTheDocument();
   });
 });
