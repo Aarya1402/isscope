@@ -8,6 +8,7 @@ const mockIssues: RankedIssue[] = [
   {
     number: 1,
     title: 'Bug in routing',
+    body: null,
     updated_at: new Date().toISOString(),
     score: 80,
     user: { login: 'coder1', avatar_url: '', html_url: '' },
@@ -21,6 +22,7 @@ const mockIssues: RankedIssue[] = [
   {
     number: 2,
     title: 'Style updates for login page',
+    body: null,
     updated_at: new Date().toISOString(),
     score: 60,
     user: { login: 'designer1', avatar_url: '', html_url: '' },

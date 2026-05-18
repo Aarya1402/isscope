@@ -7,6 +7,7 @@ import React from 'react';
 const mockIssue: RankedIssue = {
   number: 101,
   title: 'Optimize database queries',
+  body: null,
   updated_at: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
   score: 95,
   user: { login: 'octocat', avatar_url: '', html_url: '' },
