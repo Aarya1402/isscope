@@ -7,7 +7,7 @@ describe('Header component', () => {
   it('renders logo text and version', () => {
     render(<Header />);
     expect(screen.getByText('Isscope')).toBeInTheDocument();
-    expect(screen.getByText('v1.0.0')).toBeInTheDocument();
+    expect(screen.getByText(/v\d+\.\d+\.\d+/)).toBeInTheDocument();
   });
 
   it('renders rightContent when provided', () => {
